@@ -30,7 +30,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-#      - run: echo "APP_VERSION=$(npm pkg get version)" >> "$GITHUB_ENV"
       - name: Get npm package.json version
         id: get-version
         run: echo "app-version=$(npm pkg get version)" >> "$GITHUB_OUTPUT"
@@ -39,4 +38,4 @@ jobs:
     runs-on: ubuntu-22.04
     needs: build
     steps:
-      - run: echo "${{ needs.build.outputs.app-version }}"
+      - run: echo "package:${{ needs.build.outputs.app-version }}"
