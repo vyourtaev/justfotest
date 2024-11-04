@@ -31,11 +31,6 @@ jobs:
       - run: echo "APP_VERSION=$(npm pkg get version)" >> "$GITHUB_ENV"
       - run: echo "::set-output name=app_version::${{ env.APP_VERSION }}"
 
-      - name: Run a multi-line script
-        run: |
-          npm -v
-          node -v
-
   deploy:
     runs-on: ubuntu-22.04
     needs: build
