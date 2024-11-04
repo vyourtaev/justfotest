@@ -28,7 +28,16 @@ jobs:
       - name: Run a one-line script
         run: npm pkg get version
 
+      - run: echo "APP_VERSION=$(npm pkg get version)" >> "$GITHUB_ENV"
+      - run: echo "$APP_VERSION / ${{ env.APP_VERSION }}"
+
       - name: Run a multi-line script
         run: |
           npm -v
           node -v
+
+  deploy:
+    runs-on: ubuntu-22.04
+    needs: build
+    steps:
+      - run: echo "${{ needs.build.outputs.APP_VERSION }}"
