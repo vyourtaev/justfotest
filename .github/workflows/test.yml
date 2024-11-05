@@ -28,8 +28,16 @@ jobs:
           APP_VERSION=$(npm pkg get version | tr -d '"')
           echo "app-version=$APP_VERSION" >> "${GITHUB_OUTPUT}"
 
-      - uses: softprops/action-gh-release@v2
+      - name: Build 
+        run: echo "${{ github.sha }}" >> Release.txt
+      
+      - name: Test
+        run: cat Release.txt
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
         with:
+          files: Release.txt
           body: "Binaries for PBMS.Site"
           tag_name: ${{ github.ref_name }}
 
