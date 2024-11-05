@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions: 
+      contents: write
     outputs: 
       app-version: ${{ steps.get-version.outputs.app-version }}
 
@@ -25,6 +27,11 @@ jobs:
         run: | 
           APP_VERSION=$(npm pkg get version | tr -d '"')
           echo "app-version=$APP_VERSION" >> "${GITHUB_OUTPUT}"
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          body: "Binaries for PBMS.Site"
+          tag_name: ${{ github.ref }}
 
   deploy:
     runs-on: ubuntu-22.04
