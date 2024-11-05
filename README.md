@@ -1,0 +1,1 @@
+[![simple ci/cd](https://github.com/vyourtaev/justfotest/actions/workflows/test.yml/badge.svg)](https://github.com/vyourtaev/justfotest/actions/workflows/test.yml)
