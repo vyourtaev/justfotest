@@ -40,6 +40,7 @@ jobs:
           files: Release.txt
           body: "Binaries for PBMS.Site"
           tag_name: ${{ github.ref_name }}
+        if: startsWith(github.ref, 'ref/tags')
 
   deploy:
     runs-on: ubuntu-22.04
